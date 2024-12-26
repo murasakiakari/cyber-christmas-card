@@ -1,0 +1,16 @@
+{
+  "name": "cyber-christmas-card",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {},
+  "scripts": {
+      "update:major": "npm version major --no-git-tag-version",
+      "update:minor": "npm version minor --no-git-tag-version",
+      "update:patch": "npm version patch --no-git-tag-version",
+      "update:cargo": "version=$(npm pkg get version | tr -d '\"') && sed -i '0,/^version = \".*\"/s//version = \"'$version'\"/' Cargo.toml",
+      "build:debug": "cargo build && upx ./target/debug/cyber-christmas-card -9",
+      "build:release:linux": "cargo build --release && upx ./target/release/cyber-christmas-card -9",
+      "build:release:windows": "cargo build --release --target x86_64-pc-windows-gnu && upx ./target/x86_64-pc-windows-gnu/release/cyber-christmas-card.exe -9"
+  },
+  "version": "0.1.0"
+}
